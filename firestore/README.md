@@ -1,13 +1,13 @@
-# Cloud Firestore Quickstart
+# Firestore Quickstart
 
 ## Introduction
 
-Fire Eats is a restaurant recommendation app built on Cloud Firestore.
+Friendly Eats is a restaurant recommendation app built on Firestore.
 For more information about Firestore visit [the docs][firestore-docs].
 
 ## Getting Started
 
-  * [Set up your Android app for Cloud Firestore][setup-android]
+  * [Set up your Android app for Firestore][setup-android]
     * Use the package name `com.google.firebase.example.fireeats`
   * In the Authentication tab of the Firebase console go to the 
     [Sign-in Method][auth-providers] page and enable 'Email/Password'.
@@ -23,10 +23,10 @@ Add the following security rules to your project in the:
 service cloud.firestore {  
   match /databases/{database}/documents {
     // Anyone can read a restaurant, only authorized
-    // users can create, update, or delete them.
+    // users can create or update. Deletes are not allowed.
   	 match /restaurants/{restaurantId} {
     	 allow read: if true;
-    	 allow create, update, delete: if request.auth.uid != null;
+    	 allow create, update: if request.auth.uid != null;
     }
     
     // Anyone can read a rating. Only the user who made the rating
@@ -64,7 +64,7 @@ com.google.firebase.firestore.FirebaseFirestoreException: FAILED_PRECONDITION: T
 ```
 
 This is because indexes are required for most compound queries in
-Cloud Firestore. Clicking on the link from the error message will
+Firestore. Clicking on the link from the error message will
 automatically open the index creation UI in the Firebase console
 with the correct paramters filled in:
 

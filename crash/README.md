@@ -1,10 +1,10 @@
-Firebase Crash Quickstart
-=============================
+Firebase Crashlytics Quickstart
+===============================
 
 Introduction
 ------------
 
-- [Read more about Firebase Crash Reporting](https://firebase.google.com/docs/crash)
+- [Read more about Firebase Crashlytics](https://firebase.google.com/docs/crashlytics)
 
 Getting Started
 ---------------
@@ -19,7 +19,7 @@ Screenshots
 Support
 -------
 
-- [Stack Overflow](https://stackoverflow.com/questions/tagged/firebase-crash-reporting)
+- [Stack Overflow](https://stackoverflow.com/questions/tagged/crashlytics)
 - [Firebase Support](https://firebase.google.com/support/)
 
 License

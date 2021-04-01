@@ -1,17 +1,19 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'com.google.firebase.crashlytics'
+
 check.dependsOn 'assembleDebugAndroidTest'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.2"
+    compileSdkVersion 30
 
     defaultConfig {
         applicationId "com.google.samples.quickstart.crash"
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion 16
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner 'android.support.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 
     buildTypes {
@@ -21,24 +23,39 @@ android {
         }
         debug {
             minifyEnabled true
-            testProguardFile 'test-proguard-rules.pro'
+            testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'test-proguard-rules.pro'
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-}
 
-configurations.all {
-    resolutionStrategy.force 'com.android.support:support-annotations:26.1.0'
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:26.1.0'
+    implementation project(":internal:lintchecks")
+    implementation project(":internal:chooserx")
+    implementation 'com.google.android.material:material:1.3.0'
 
-    compile 'com.google.firebase:firebase-crash:11.6.0'
+    // Import the Firebase BoM (see: https://firebase.google.com/docs/android/learn-more#bom)
+    implementation platform('com.google.firebase:firebase-bom:26.6.0')
 
-    testCompile 'junit:junit:4.12'
-    androidTestCompile 'com.android.support.test.espresso:espresso-core:2.2.2'
-    androidTestCompile 'com.android.support.test:runner:0.5'
+    // Firebase Crashlytics (Java)
+    implementation 'com.google.firebase:firebase-crashlytics'
+
+    // Firebase Crashlytics (Kotlin)
+    implementation 'com.google.firebase:firebase-crashlytics-ktx'
+
+    // For an optimal experience using Crashlytics, add the Firebase SDK
+    // for Google Analytics. This is recommended, but not required.
+    implementation 'com.google.firebase:firebase-analytics'
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test:rules:1.3.0'
+    androidTestImplementation 'androidx.test:runner:1.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 }
 
 apply plugin: 'com.google.gms.google-services'

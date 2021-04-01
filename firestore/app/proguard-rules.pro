@@ -25,4 +25,11 @@
 #-renamesourcefileattribute SourceFile
 
 # Keep custom model classes
--keep class com.google.firebase.example.fireeats.model.** { *; }
+-keep class com.google.firebase.example.fireeats.java.model.** { *; }
+-keep class com.google.firebase.example.fireeats.kotlin.model.** { *; }
+
+# https://github.com/firebase/FirebaseUI-Android/issues/1175
+-dontwarn okio.**
+-dontwarn retrofit2.Call
+-dontnote retrofit2.Platform$IOS$MainThreadExecutor
+-keep class android.support.v7.widget.RecyclerView { *; }
